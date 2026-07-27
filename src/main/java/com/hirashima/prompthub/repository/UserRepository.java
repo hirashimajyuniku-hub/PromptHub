@@ -1,15 +1,15 @@
 // Userテーブルを操作するRepository
-// DBへの保存・検索などを担当します。
-
 package com.hirashima.prompthub.repository;
+
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.hirashima.prompthub.model.User;
+import com.hirashima.prompthub.model.UserModel;
 
+public interface UserRepository extends JpaRepository<UserModel, Long> {
 
-// Userエンティティ用Repository
-// JpaRepositoryを継承することでCRUD機能が使える
-public interface UserRepository extends JpaRepository<User, Long> {
+    // メールアドレスでユーザーを検索
+    Optional<UserModel> findByEmail(String email);
 
 }
