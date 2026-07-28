@@ -15,20 +15,29 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class UserModel {
-
-    @Id
+@Table(name = "prompts")
+public class PromptModel {
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String email;
-    private String password;
-    @Column(name = "display_name")
-    private String displayName;
-    private String bio;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    private String title;
+
+    private String content;
+
+    @Column(name = "ai_tool")
+    private String aiTool;
+
+    private String status;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }

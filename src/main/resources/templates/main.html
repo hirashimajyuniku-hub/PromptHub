@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>メインメニュー</title>
+</head>
+<body>
+<h1>プロンプト保管場所</h1>
+<h2>メインメニュー</h2>
+<p>ログインしました</p>
+<nav>
+    <a href="/main">ホーム</a>
+	
+	<form th:action="@{/logout}" method="post">
+	    <button type="submit">ログアウト</button>
+	</form>
+	
+	<a href="/login">ログイン画面</a>
+</nav>
+</body>
+</html>
