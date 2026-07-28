@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>プロンプト登録</title>
+</head>
+<body>
+
+<h1>プロンプト登録</h1>
+
+<form th:action="@{/prompt/create}" method="post">
+
+    <p>タイトル</p>
+    <input type="text" name="title">
+
+    <p>プロンプト</p>
+    <textarea rows="10" name="content"></textarea>
+
+    <p>公開設定</p>
+
+    <select name="status">
+        <option value="PUBLIC">PUBLIC</option>
+        <option value="PRIVATE">PRIVATE</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">保存</button>
+
+</form>
+
+</body>
+</html>
