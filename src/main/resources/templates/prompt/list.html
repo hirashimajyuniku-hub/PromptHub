@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>プロンプト一覧</title>
+</head>
+<body>
+
+<h1>プロンプト一覧</h1>
+
+<table border="1">
+    <tr>
+        <th>タイトル</th>
+        <th>公開設定</th>
+    </tr>
+
+    <tr th:each="prompt : ${prompts}">
+        <td><a th:href="@{/prompt/{id}(id=${prompt.id})}"
+				th:text="${prompt.title}">
+		</a>
+			
+		</td>
+        <td th:text="${prompt.status}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

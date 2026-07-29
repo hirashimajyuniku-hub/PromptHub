@@ -8,17 +8,19 @@
 
 <h1>プロンプト登録</h1>
 
-<form th:action="@{/prompt/create}" method="post">
+<form th:action="@{/prompt/create}"
+      th:object="${promptForm}"
+      method="post">
 
     <p>タイトル</p>
-    <input type="text" name="title">
+    <input type="text" th:field="*{title}">
 
     <p>プロンプト</p>
-    <textarea rows="10" name="content"></textarea>
+    <textarea th:field="*{content}"></textarea>
 
     <p>公開設定</p>
 
-    <select name="status">
+    <select th:field="*{status}">
         <option value="PUBLIC">PUBLIC</option>
         <option value="PRIVATE">PRIVATE</option>
     </select>

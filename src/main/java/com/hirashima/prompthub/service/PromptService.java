@@ -1,4 +1,6 @@
 package com.hirashima.prompthub.service;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,16 @@ public class PromptService {
         prompt.setContent(form.getContent());
 
         prompt.setStatus(form.getStatus());
+        
+        prompt.setCreatedAt(LocalDateTime.now());
+        
+        prompt.setUpdatedAt(LocalDateTime.now());
 
         promptRepository.save(prompt);
 
+    }
+    
+    public List<PromptModel> findAll() {
+        return promptRepository.findAll();
     }
 }

@@ -2,6 +2,7 @@ package com.hirashima.prompthub.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +22,9 @@ public class PromptController {
 	private final PromptService promptService;
 	
     @GetMapping("/prompt/create") 
-    public String create() {
-
+    public String create(Model model) {
+    	
+    	model.addAttribute("promptForm", new PromptForm());
         return "prompt/create";
 
     }
