@@ -40,4 +40,9 @@ public class PromptService {
     public List<PromptModel> findAll() {
         return promptRepository.findAll();
     }
+    
+    public PromptModel findById(Long id) {
+        return promptRepository.findById(id)
+                .orElseThrow();
+    }
 }

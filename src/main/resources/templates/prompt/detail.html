@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>詳細</title>
+</head>
+<body>
+
+<h1>プロンプト詳細</h1>
+
+<p>タイトル</p>
+<p th:text="${prompt.title}"></p>
+
+<p>内容</p>
+<p th:text="${prompt.content}"></p>
+
+<p>公開設定</p>
+<p th:text="${prompt.status}"></p>
+
+<a th:href="@{/prompt-list}">一覧へ戻る</a>
+
+</body>
+</html>
