@@ -45,4 +45,20 @@ public class PromptService {
         return promptRepository.findById(id)
                 .orElseThrow();
     }
+    
+    public void update(Long id,String title,String content,String status) {
+    	PromptModel prompt = promptRepository.findById(id)
+                .orElseThrow();
+    	
+    	prompt.setTitle(title);
+        prompt.setContent(content);
+        prompt.setStatus(status);
+        prompt.setUpdatedAt(LocalDateTime.now());
+        
+        promptRepository.save(prompt);
+    }
+    
+    public void delete(Long id) {
+    	promptRepository.deleteById(id);
+    }
 }

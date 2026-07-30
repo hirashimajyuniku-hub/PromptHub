@@ -1,0 +1,52 @@
+@charset "UTF-8";
+body{
+    background:#f5f7fb;
+}
+
+.navbar{
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+/*プロンプト一覧*/
+.prompt-card:hover{
+    transform: translateY(-2px);
+    transition: .2s;
+}
+/* 全体 */
+body{
+    background-color: rgb(213, 244, 240);
+}
+
+/* ロゴ */
+.logo{
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* カード */
+.card{
+    border: none;
+    border-radius: 16px;
+}
+
+/* ボタン */
+.btn-primary{
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover{
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* ナビゲーション */
+.navbar{
+    background-color: #1e293b !important;
+}
+
+/* 入力欄 */
+.form-control:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.2);
+}

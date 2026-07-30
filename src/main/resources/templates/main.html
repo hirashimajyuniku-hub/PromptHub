@@ -1,29 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+	rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 <meta charset="UTF-8">
 <title>メインメニュー</title>
 </head>
 <body>
-<h1>プロンプト保管場所</h1>
-<h2>メインメニュー</h2>
-<p>ログインしました</p>
-<nav>
-	
-	<form th:action="@{/logout}" method="post">
-	    <button type="submit">ログアウト</button>
-	</form>
-	
-	<a href="/login">ログイン画面</a>
+<div th:replace="~{fragments/header :: header}"></div>
 
-	
-	<form th:action="@{/prompt/create}" method="get">
-	    <button type="submit">プロンプト保存</button>
-	</form>
-	
-	<a th:href="@{/prompt-list}">プロンプト一覧</a>
 
-</nav>
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-4 fw-bold">PromptHub</h1>
+
+        <p class="lead">
+            AIプロンプトを保存・管理・共有できるサービス
+        </p>
+
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mb-5">
+
+        <a th:href="@{/prompt/create}" class="btn btn-primary btn-lg">
+            ＋ 新規投稿
+        </a>
+
+        <a th:href="@{/prompt-list}" class="btn btn-outline-primary btn-lg">
+            📚 プロンプト一覧
+        </a>
+
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h3>PromptHubでできること</h3>
+
+            <ul class="mt-3">
+                <li>AIプロンプトの保存</li>
+                <li>プロンプトの編集・削除</li>
+                <li>公開・非公開の管理</li>
+                <li>一覧・詳細表示</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+
+        <form th:action="@{/logout}" method="post">
+
+            <button class="btn btn-danger">
+                ログアウト
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
 
 
 </body>
