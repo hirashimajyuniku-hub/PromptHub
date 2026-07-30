@@ -34,4 +34,9 @@ public UserModel login(LoginForm form) {
 	}
 	return null;
 }
+
+	public UserModel findByEmail(String email) {
+    return userRepository.findByEmail(email)
+            .orElseThrow();            
+            }
 }

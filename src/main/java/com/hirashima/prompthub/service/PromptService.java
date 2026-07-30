@@ -17,6 +17,7 @@ public class PromptService {
 
     private final PromptRepository promptRepository;
     
+//    プロンプトに追加
     public void create(PromptForm form, UserModel user) {
 
         PromptModel prompt = new PromptModel();
@@ -37,18 +38,42 @@ public class PromptService {
 
     }
     
-    public List<PromptModel> findAll() {
-        return promptRepository.findAll();
+   
+    public List<PromptModel> findAll(UserModel loginUser) {
+
+
+       
+        List<PromptModel> prompts =
+                promptRepository.findByStatus("PUBLIC");
+
+        List<PromptModel> privatePrompts =
+                promptRepository.findByUserAndStatus(
+                        loginUser,
+                        "PRIVATE"
+                );
+        
+        prompts.addAll(privatePrompts);
+
+
+        return prompts;
     }
+    
+    
     
     public PromptModel findById(Long id) {
         return promptRepository.findById(id)
                 .orElseThrow();
     }
     
-    public void update(Long id,String title,String content,String status) {
+    public void update(Long id,String title,String content,String status,UserModel loginUser
+) {
+    	
     	PromptModel prompt = promptRepository.findById(id)
                 .orElseThrow();
+    	
+    	if(!prompt.getUser().getEmail().equals(loginUser.getId())){
+    	    throw new RuntimeException("編集権限がありません");
+    	}
     	
     	prompt.setTitle(title);
         prompt.setContent(content);
@@ -58,7 +83,69 @@ public class PromptService {
         promptRepository.save(prompt);
     }
     
-    public void delete(Long id) {
+    
+    
+    
+    
+    public void delete(Long id,UserModel loginUser) {
+		PromptModel prompt = promptRepository.findById(id)
+				.orElseThrow();
+
+		if(!prompt.getUser().getEmail().equals(loginUser.getId())) {
+			throw new RuntimeException("削除権限がありません");
+		}
     	promptRepository.deleteById(id);
+    }
+    
+    
+    
+    
+    public PromptModel findByIdForEdit(Long id,UserModel loginUser) {
+        PromptModel prompt =
+                promptRepository.findById(id)
+                .orElseThrow();
+
+
+
+        
+        if(!prompt.getUser()
+                .getId()
+                .equals(loginUser.getId())) {
+
+            throw new RuntimeException(
+                    "編集権限がありません!"
+            );
+        }
+        
+
+        return prompt;
+    }
+    
+    public PromptModel findByIdForView(
+            Long id,
+            UserModel loginUser
+    ) {
+
+
+        PromptModel prompt =
+                promptRepository.findById(id)
+                .orElseThrow();
+
+
+        if(
+            prompt.getStatus().equals("PRIVATE")
+            &&
+            !prompt.getUser()
+                    .getId()
+                    .equals(loginUser.getId())
+        ){
+
+            throw new RuntimeException(
+                    "閲覧権限がありません"
+            );
+        }
+
+
+        return prompt;
     }
 }

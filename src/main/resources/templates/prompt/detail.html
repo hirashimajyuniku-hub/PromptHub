@@ -42,19 +42,27 @@ rel="stylesheet">
                    th:href="@{/prompt-list}">
                     一覧へ戻る
                 </a>
+				<div th:if="${prompt.user.id == loginUser.id}">
 
-                <a class="btn btn-warning"
-                   th:href="@{/prompt/{id}/edit(id=${prompt.id})}">
-                    編集
-                </a>
 
-                <form th:action="@{/prompt/{id}/delete(id=${prompt.id})}"
-                      method="post">
+				    <a class="btn btn-warning"
+				       th:href="@{/prompt/{id}/edit(id=${prompt.id})}">
+				        編集
+				    </a>
 
-                    <button type="submit" class="btn btn-danger">
-                        削除
-                    </button>
 
+				    <form th:action="@{/prompt/{id}/delete(id=${prompt.id})}"
+				          method="post"
+				          class="d-inline">
+
+				        <button class="btn btn-danger">
+				            削除
+				        </button>
+
+				    </form>
+
+
+				</div>
                 </form>
 
             </div>
