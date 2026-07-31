@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-	rel="stylesheet">
+    <meta charset="UTF-8">
 
-	<link rel="stylesheet" th:href="@{/css/style.css}">
-<meta charset="UTF-8">
-<title>メインメニュー</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+    <title>メインメニュー</title>
 </head>
-<body>
-<div th:replace="~{fragments/header :: header}"></div>
 
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div class="container mt-5">
 
@@ -26,11 +31,13 @@
 
     <div class="d-flex justify-content-center gap-3 mb-5">
 
-        <a th:href="@{/prompt/create}" class="btn btn-primary btn-lg">
+        <a th:href="@{/prompt/create}"
+           class="btn btn-primary btn-lg">
             ＋ 新規投稿
         </a>
 
-        <a th:href="@{/prompt-list}" class="btn btn-outline-primary btn-lg">
+        <a th:href="@{/prompt-list}"
+           class="btn btn-outline-primary btn-lg">
             📚 プロンプト一覧
         </a>
 
@@ -53,24 +60,7 @@
 
     </div>
 
-    <div class="text-center mt-5">
-
-        <form th:action="@{/logout}" method="post">
-
-            <button class="btn btn-danger">
-                ログアウト
-            </button>
-
-        </form>
-
-    </div>
-
 </div>
-
-</body>
-
-</html>
-
 
 </body>
 </html>

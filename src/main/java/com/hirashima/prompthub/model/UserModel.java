@@ -11,7 +11,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 @Entity
+@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,4 +33,7 @@ public class UserModel {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+    
+    @Column(nullable = false)
+    private String role;
 }

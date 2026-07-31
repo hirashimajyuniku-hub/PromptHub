@@ -91,7 +91,7 @@ public class PromptService {
 		PromptModel prompt = promptRepository.findById(id)
 				.orElseThrow();
 
-		if(!prompt.getUser().getEmail().equals(loginUser.getId())) {
+		if(!prompt.getUser().getId().equals(loginUser.getId())) {
 			throw new RuntimeException("削除権限がありません");
 		}
     	promptRepository.deleteById(id);

@@ -10,39 +10,61 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
             .authorizeHttpRequests(auth -> auth
-                // ログイン画面、新規登録は誰でもアクセス可能
-                .requestMatchers("/login", "/signup").permitAll()
+
+                // 誰でもアクセス可能
+                .requestMatchers(
+                    "/login",
+                    "/signup",
+                    "/css/**",
+                    "/js/**"
+                ).permitAll()
+
+                // 管理者だけアクセス可能
+                .requestMatchers("/admin/**")
+                .hasRole("ADMIN")
+
                 // それ以外はログイン必須
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
             )
+
             .formLogin(form -> form
-                // 自作ログイン画面
-                .loginPage("/login")
+            	    .loginPage("/login")
 
-                // ログイン成功後
-                .defaultSuccessUrl("/main", true)
+            	    .successHandler((request, response, authentication) -> {
 
-                .permitAll()
-            )
+            	        boolean isAdmin = authentication.getAuthorities()
+            	                .stream()
+            	                .anyMatch(authority ->
+            	                        authority.getAuthority().equals("ROLE_ADMIN")
+            	                );
+
+            	        if (isAdmin) {
+            	            response.sendRedirect("/admin");
+            	        } else {
+            	            response.sendRedirect("/main");
+            	        }
+            	    })
+
+            	    .permitAll()
+            	)
+            
             .logout(logout -> logout
                 .logoutSuccessUrl("/login")
             );
-//        いずれ論理削除に挑戦
+
+        // いずれ論理削除に挑戦
 
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
-    
 }

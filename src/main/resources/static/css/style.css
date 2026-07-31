@@ -1,52 +1,227 @@
 @charset "UTF-8";
-body{
-    background:#f5f7fb;
-}
+/* ==============================
+   PromptHub 共通ヘッダー
+============================== */
 
-.navbar{
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-/*プロンプト一覧*/
-.prompt-card:hover{
-    transform: translateY(-2px);
-    transition: .2s;
-}
-/* 全体 */
-body{
-    background-color: rgb(213, 244, 240);
+.prompt-header {
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.45),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #09090b 0%,
+            #18112c 55%,
+            #111827 100%
+        );
+
+    min-height: 76px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ロゴ */
-.logo{
-    color: #2563eb;
+
+.navbar-brand {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand:hover {
+    color: #ddd6fe;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #4f46e5
+    );
+
+    color: #ffffff;
+    font-size: 22px;
+
+    box-shadow:
+        0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.brand-title {
+    font-size: 1.35rem;
+}
+
+/* ログインユーザー表示 */
+
+.user-area {
+    padding: 5px 12px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #a78bfa,
+        #6366f1
+    );
+
+    color: white;
     font-weight: bold;
-    text-decoration: none;
 }
 
-/* カード */
-.card{
+.user-label {
+    display: block;
+    color: #a1a1aa;
+    font-size: 0.68rem;
+    line-height: 1;
+}
+
+.user-name {
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* 共通ボタン */
+
+.btn-header-menu,
+.btn-admin,
+.btn-post,
+.btn-logout {
+    min-height: 40px;
+    padding: 8px 16px;
+
+    border-radius: 10px;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.btn-header-menu:hover,
+.btn-admin:hover,
+.btn-post:hover,
+.btn-logout:hover {
+    transform: translateY(-2px);
+}
+
+/* 一覧ボタン */
+
+.btn-header-menu {
+    color: #e4e4e7;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-header-menu:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* 管理者ボタン */
+
+.btn-admin {
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+}
+
+.btn-admin:hover {
+    color: #ffffff;
+    background: #d97706;
+
+    box-shadow:
+        0 5px 18px rgba(245, 158, 11, 0.3);
+}
+
+/* 投稿ボタン */
+
+.btn-post {
+    color: #ffffff;
     border: none;
-    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #4f46e5
+    );
+
+    box-shadow:
+        0 4px 16px rgba(99, 102, 241, 0.3);
 }
 
-/* ボタン */
-.btn-primary{
-    background-color: #2563eb;
-    border-color: #2563eb;
+.btn-post:hover {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #4338ca
+    );
+
+    box-shadow:
+        0 6px 22px rgba(99, 102, 241, 0.45);
 }
 
-.btn-primary:hover{
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
+/* ログアウトボタン */
+
+.btn-logout {
+    color: #fca5a5;
+    background: transparent;
+    border: 1px solid rgba(248, 113, 113, 0.4);
 }
 
-/* ナビゲーション */
-.navbar{
-    background-color: #1e293b !important;
+.btn-logout:hover {
+    color: #ffffff;
+    background: #dc2626;
+
+    box-shadow:
+        0 5px 18px rgba(220, 38, 38, 0.3);
 }
 
-/* 入力欄 */
-.form-control:focus{
-    border-color: #2563eb;
-    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.2);
+/* スマホ表示 */
+
+@media (max-width: 991px) {
+
+    .prompt-header {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .user-area {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .btn-header-menu,
+    .btn-admin,
+    .btn-post,
+    .btn-logout {
+        width: 100%;
+    }
 }

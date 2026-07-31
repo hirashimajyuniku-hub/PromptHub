@@ -1,15 +1,16 @@
 package com.hirashima.prompthub.service;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hirashima.prompthub.form.LoginForm;
+import com.hirashima.prompthub.form.SignupForm;
 import com.hirashima.prompthub.model.UserModel;
 import com.hirashima.prompthub.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -39,4 +40,24 @@ public UserModel login(LoginForm form) {
     return userRepository.findByEmail(email)
             .orElseThrow();            
             }
+	
+	
+	
+	public void signup(SignupForm form) {
+
+	    UserModel user = new UserModel();
+	    LocalDateTime now = LocalDateTime.now();
+		
+	    user.setUsername(form.getUsername());
+	    user.setEmail(form.getEmail());
+	    user.setPassword(
+	            passwordEncoder.encode(form.getPassword())
+	    );
+	    user.setCreatedAt(now);
+	    user.setUpdatedAt(now);
+		user.setDisplayName(form.getUsername());
+
+		
+	    userRepository.save(user);
+	}
 }
