@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.hirashima.prompthub.exception.DuplicateEmailException;
 import com.hirashima.prompthub.form.LoginForm;
 import com.hirashima.prompthub.form.SignupForm;
 import com.hirashima.prompthub.model.UserModel;
@@ -44,9 +45,19 @@ public UserModel login(LoginForm form) {
 	
 	
 	public void signup(SignupForm form) {
+		
+	    Optional<UserModel> existingUser =
+	            userRepository.findByEmail(form.getEmail());
+
+	    if (existingUser.isPresent()) {
+	        throw new DuplicateEmailException(
+	                "このメールアドレスは既に登録されています"
+	        );
+	    }
 
 	    UserModel user = new UserModel();
 	    LocalDateTime now = LocalDateTime.now();
+	    
 		
 	    user.setUsername(form.getUsername());
 	    user.setEmail(form.getEmail());
@@ -55,7 +66,10 @@ public UserModel login(LoginForm form) {
 	    );
 	    user.setCreatedAt(now);
 	    user.setUpdatedAt(now);
+	    user.setRole("ROLE_USER");
 		user.setDisplayName(form.getUsername());
+		
+		
 
 		
 	    userRepository.save(user);

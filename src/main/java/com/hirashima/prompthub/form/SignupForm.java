@@ -22,4 +22,8 @@ public class SignupForm {
 
     @NotBlank(message = "確認用パスワードを入力してください")
     private String passwordConfirm;
+    
+    public boolean isPasswordMatched() {
+        return password.equals(passwordConfirm);
+    }
 }

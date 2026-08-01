@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.hirashima.prompthub.exception.DuplicateEmailException;
 import com.hirashima.prompthub.form.SignupForm;
 import com.hirashima.prompthub.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-
 @Controller
 @RequiredArgsConstructor
 public class SignUpController {
@@ -41,8 +41,29 @@ public class SignUpController {
         if(result.hasErrors()) {
             return "auth/signup";
         }
+        
+        if (!signupForm.isPasswordMatched()) {
+            result.rejectValue(
+                    "passwordConfirm",
+                    "password.mismatch",
+                    "パスワードが一致しません"
+            );
 
-        userService.signup(signupForm);
+            return "auth/signup";
+        }
+        
+        
+        try {
+            userService.signup(signupForm);
+        } catch (DuplicateEmailException e) {
+            result.rejectValue(
+                    "email",
+                    "email.duplicate",
+                    e.getMessage()
+            );
+
+            return "auth/signup";
+        }
 
         return "redirect:/login";
     }

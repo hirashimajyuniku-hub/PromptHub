@@ -57,6 +57,9 @@
                             <input type="email"
                                    th:field="*{email}"
                                    class="form-control">
+						<div th:if="${#fields.hasErrors('email')}"
+							th:errors="*{email}">
+						</div>
                         </div>
 
                         <div class="mb-3">
@@ -77,6 +80,10 @@
                             <input type="password"
                                    th:field="*{passwordConfirm}"
                                    class="form-control">
+						<div th:if="${#fields.hasErrors('passwordConfirm')}"
+							th:errors="*{passwordConfirm}">
+						</div>
+						
                         </div>
 
                         <button
