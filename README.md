@@ -68,23 +68,6 @@
 | メール重複チェック | 同一メールアドレスの登録防止 |
 | エラー画面 | 権限エラーなどを表示 |
 
-## インフラ構成図
-
-```mermaid
-flowchart LR
-    User[ユーザー]
-    Browser[Webブラウザ]
-    GitHub[GitHub]
-    Render[Render]
-    App[Spring Boot<br>PromptHub]
-    DB[(Supabase<br>PostgreSQL)]
-
-    User --> Browser
-    Browser -->|HTTPS| Render
-    GitHub -->|自動デプロイ| Render
-    Render --> App
-    App -->|データ保存・取得| DB
-```
 
 # データベース構成
 
