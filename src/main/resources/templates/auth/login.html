@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -15,21 +16,21 @@
 
 <body class="auth-page">
 
-<main class="auth-container">
+<main class="auth-shell">
 
     <section class="auth-card">
 
-        <div class="auth-logo-area">
+        <div class="auth-brand">
 
-            <div class="auth-logo-icon">
-                P
+            <div class="auth-logo-mark">
+                ✦
             </div>
 
-            <h1 class="auth-logo">
+            <h1 class="auth-brand-name">
                 PromptHub
             </h1>
 
-            <p class="auth-description">
+            <p class="auth-brand-description">
                 AIプロンプトを整理・共有・再利用
             </p>
 
@@ -39,19 +40,19 @@
             ログイン
         </h2>
 
-        <div class="auth-error"
+        <div class="alert alert-error"
              th:if="${param.error}">
             メールアドレスまたはパスワードが正しくありません。
         </div>
 
-        <div class="auth-success"
+        <div class="alert alert-success"
              th:if="${param.logout}">
             ログアウトしました。
         </div>
 
         <form th:action="@{/login}"
               method="post"
-              class="auth-form">
+              class="form">
 
             <div class="form-group">
 
@@ -88,7 +89,7 @@
             </div>
 
             <button type="submit"
-                    class="primary-button auth-submit-button">
+                    class="primary-button auth-submit">
                 ログイン
             </button>
 

@@ -1,106 +1,70 @@
-<!--
-    PromptHub共通ヘッダー
-    ロゴ、ログインユーザー名、管理者画面、一覧、投稿、ログアウトを表示する
--->
-<header th:fragment="header">
+<header th:fragment="header"
+        class="site-header">
 
-    <nav class="navbar navbar-expand-lg navbar-dark prompt-header shadow-sm">
-        <div class="container">
+    <div class="header-container">
 
-            <!-- ロゴ -->
-            <a class="navbar-brand d-flex align-items-center gap-2"
-               th:href="@{main}">
+        <a th:href="@{/main}"
+           class="header-brand">
 
-                <span class="brand-icon">
-                    ✦
-                </span>
+            <span class="header-logo-mark">
+                ✦
+            </span>
 
-                <span class="fw-bold brand-title">
-                    PromptHub
-                </span>
+            <span class="header-brand-name">
+                PromptHub
+            </span>
+
+        </a>
+
+        <nav class="header-nav">
+
+            <a th:href="@{/prompt-list}"
+               class="header-nav-link">
+                プロンプト一覧
             </a>
 
-            <!-- スマホ用メニューボタン -->
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#headerMenu"
-                    aria-controls="headerMenu"
-                    aria-expanded="false"
-                    aria-label="メニューを開く">
+            <a th:href="@{/prompt/create}"
+               class="primary-button header-create-button">
+                ＋ 新規投稿
+            </a>
 
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a th:if="${loginUser != null
+                       and loginUser.role == 'ROLE_ADMIN'}"
+               th:href="@{/admin}"
+               class="header-nav-link header-admin-link">
+                管理画面
+            </a>
 
-            <!-- メニュー -->
-            <div class="collapse navbar-collapse"
-                 id="headerMenu">
+        </nav>
 
-                <div class="ms-auto d-flex flex-column flex-lg-row
-                            align-items-lg-center gap-2 mt-3 mt-lg-0">
+        <div class="header-actions"
+             th:if="${loginUser != null}">
 
-                    <!-- ログインユーザー -->
-                    <div class="user-area d-flex align-items-center me-lg-2"
-                         th:if="${loginUser != null}">
+            <div class="header-user">
 
-                        <div class="user-icon">
-                            <span th:text="${#strings.substring(loginUser.displayName, 0, 1)}">
-                                U
-                            </span>
-                        </div>
+                <span class="header-user-label">
+                    ログイン中
+                </span>
 
-                        <div class="ms-2">
-                            <small class="user-label">
-                                ログイン中
-                            </small>
+                <span class="header-user-name"
+                      th:text="${loginUser.displayName + ' さん'}">
+                    ユーザー さん
+                </span>
 
-                            <div class="user-name"
-                                 th:text="${loginUser.displayName + ' さん'}">
-                                ユーザー さん
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 管理者だけ表示 -->
-                    <a class="btn btn-admin"
-                       th:if="${loginUser != null
-                               and loginUser.role == 'ROLE_ADMIN'}"
-                       th:href="@{/admin}">
-
-                        管理者画面
-                    </a>
-
-                    <!-- 投稿一覧 -->
-                    <a class="btn btn-header-menu"
-                       th:href="@{/prompt-list}">
-
-                        一覧
-                    </a>
-
-                    <!-- 新規投稿 -->
-                    <a class="btn btn-post"
-                       th:href="@{/prompt/create}">
-
-                        ＋ 新規投稿
-                    </a>
-
-                    <!-- ログアウト -->
-                    <form th:action="@{/logout}"
-                          method="post"
-                          class="d-inline">
-
-                        <button type="submit"
-                                class="btn btn-logout w-100">
-
-                            ログアウト
-                        </button>
-
-                    </form>
-
-                </div>
             </div>
 
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button type="submit"
+                        class="secondary-button header-logout-button">
+                    ログアウト
+                </button>
+
+            </form>
+
         </div>
-    </nav>
+
+    </div>
 
 </header>

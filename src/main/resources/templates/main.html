@@ -1,66 +1,159 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ホーム | PromptHub</title>
 
     <link rel="stylesheet"
           th:href="@{/css/style.css}">
-
-    <title>メインメニュー</title>
 </head>
 
 <body>
 
 <div th:replace="~{fragments/header :: header}"></div>
 
-<div class="container mt-5">
+<main>
 
-    <div class="text-center mb-5">
+    <section class="main-section">
 
-        <h1 class="display-4 fw-bold">PromptHub</h1>
+        <div class="page-container">
 
-        <p class="lead">
-            AIプロンプトを保存・管理・共有できるサービス
-        </p>
+            <div class="section-heading">
 
-    </div>
+                <span class="section-eyebrow">
+                    FEATURES
+                </span>
 
-    <div class="d-flex justify-content-center gap-3 mb-5">
+                <h2 class="section-large-title">
+                    PromptHubでできること
+                </h2>
 
-        <a th:href="@{/prompt/create}"
-           class="btn btn-primary btn-lg">
-            ＋ 新規投稿
-        </a>
+                <p class="section-description">
+                    プロンプトを管理できます。
+                </p>
 
-        <a th:href="@{/prompt-list}"
-           class="btn btn-outline-primary btn-lg">
-            📚 プロンプト一覧
-        </a>
+            </div>
 
-    </div>
+            <div class="feature-grid">
 
-    <div class="card shadow-sm">
+                <article class="surface-card  feature-card">
 
-        <div class="card-body">
+                    <div class="feature-number">
+                        01
+                    </div>
 
-            <h3>PromptHubでできること</h3>
+                    <h3 class="feature-title">
+                        保存
+                    </h3>
 
-            <ul class="mt-3">
-                <li>AIプロンプトの保存</li>
-                <li>プロンプトの編集・削除</li>
-                <li>公開・非公開の管理</li>
-                <li>一覧・詳細表示</li>
-            </ul>
+                    <p class="feature-description">
+                        よく使うAIプロンプトを登録し、
+                        いつでも確認できます。
+                    </p>
+
+                </article>
+
+                <article class="surface-card  feature-card">
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <h3 class="feature-title">
+                        編集・削除
+                    </h3>
+
+                    <p class="feature-description">
+                        自分が作成したプロンプトを、
+                        用途に合わせて更新できます。
+                    </p>
+
+                </article>
+
+                <article class="surface-card  feature-card">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <h3 class="feature-title">
+                        公開設定
+                    </h3>
+
+                    <p class="feature-description">
+                        他のユーザーへ共有するか、
+                        自分だけで管理するか選択できます。
+                    </p>
+
+                </article>
+
+                <article class="surface-card  feature-card">
+
+                    <div class="feature-number">
+                        04
+                    </div>
+
+                    <h3 class="feature-title">
+                        再利用
+                    </h3>
+
+                    <p class="feature-description">
+                        過去のプロンプトを探し直す手間を減らし、
+                        AIを効率的に活用できます。
+                    </p>
+
+                </article>
+
+            </div>
 
         </div>
 
-    </div>
+    </section>
 
-</div>
+    <!-- CTA -->
+
+    <section class="main-cta-section">
+
+        <div class="page-container">
+
+            <div class="main-cta-card">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        GET STARTED
+                    </span>
+
+                    <h2 class="main-cta-title">
+                        あなたのプロンプトを登録しましょう
+                    </h2>
+
+                    <p class="main-cta-description">
+                        まずは普段よく使っているプロンプトを
+                        1件保存してみましょう。
+                    </p>
+
+                </div>
+
+                <a th:href="@{/prompt/create}"
+                   class="primary-button">
+                    新規投稿へ
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 </body>
+
 </html>
