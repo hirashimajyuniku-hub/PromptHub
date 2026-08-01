@@ -26,6 +26,10 @@
 ### アプリ
 
 > https://prompthub-y4kd.onrender.com/login
+>
+> デモアカウント
+メールアドレス:test@gmail.com
+パスワード:testpass
 
 ### GitHub
 
