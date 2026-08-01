@@ -16,7 +16,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
 
-                // 誰でもアクセス可能
+                
                 .requestMatchers(
                     "/login",
                     "/signup",
@@ -24,11 +24,11 @@ public class SecurityConfig {
                     "/js/**"
                 ).permitAll()
 
-                // 管理者だけアクセス可能
+               
                 .requestMatchers("/admin/**")
                 .hasRole("ADMIN")
 
-                // それ以外はログイン必須
+                
                 .anyRequest()
                 .authenticated()
             )
@@ -58,7 +58,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login")
             );
 
-        // いずれ論理削除に挑戦
+        
 
         return http.build();
     }

@@ -19,13 +19,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    // Spring Securityがログイン時に呼び出すメソッド
+   
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
 
-        // DBからメールアドレスでユーザー検索
+        
         UserModel user = userRepository.findByEmail(email)
                 .orElseThrow(() ->
                     new UsernameNotFoundException(
@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 );
 
 
-        // UserModelをSpring Security用のUserDetailsへ変換
+       
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())

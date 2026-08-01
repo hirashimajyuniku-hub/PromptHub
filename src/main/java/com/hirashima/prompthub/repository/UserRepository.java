@@ -9,7 +9,6 @@ import com.hirashima.prompthub.model.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, Long> {
 
-    // メールアドレスでユーザーを検索
     Optional<UserModel> findByEmail(String email);
 
 }
